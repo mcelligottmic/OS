@@ -3,8 +3,7 @@
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
-    __.prototype = b.prototype;
-    d.prototype = new __();
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 /* ----------------------------------
    DeviceDriverKeyboard.ts
@@ -20,7 +19,14 @@ var TSOS;
         __extends(DeviceDriverKeyboard, _super);
         function DeviceDriverKeyboard() {
             // Override the base method pointers.
-            _super.call(this, this.krnKbdDriverEntry, this.krnKbdDispatchKeyPress);
+            var _this = 
+            // The code below cannot run because "this" can only be
+            // accessed after calling super.
+            //super(this.krnKbdDriverEntry, this.krnKbdDispatchKeyPress);
+            _super.call(this) || this;
+            _this.driverEntry = _this.krnKbdDriverEntry;
+            _this.isr = _this.krnKbdDispatchKeyPress;
+            return _this;
         }
         DeviceDriverKeyboard.prototype.krnKbdDriverEntry = function () {
             // Initialization routine for this, the kernel-mode Keyboard Device Driver.
@@ -54,6 +60,6 @@ var TSOS;
             }
         };
         return DeviceDriverKeyboard;
-    })(TSOS.DeviceDriver);
+    }(TSOS.DeviceDriver));
     TSOS.DeviceDriverKeyboard = DeviceDriverKeyboard;
 })(TSOS || (TSOS = {}));

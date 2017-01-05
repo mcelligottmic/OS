@@ -91,6 +91,11 @@ module TSOS {
                                   "- Displays your current location");
             this.commandList[this.commandList.length] = sc;
 
+            sc = new ShellCommand(this.shellStatus,
+                                  "status",
+                                  "<string> - Displays <string> as your status.");
+            this.commandList[this.commandList.length] = sc;
+
             // ps  - list the running processes and their IDs
             // kill <id> - kills the specified process id.
 
@@ -311,6 +316,20 @@ module TSOS {
         public shellWhereAmI(args) {
             //tells you where you are...like you didn't know
             _StdOut.putText("You're at a computer...");
+        }
+
+        public shellStatus(args) {
+            //changes your status
+            if (args.length > 0) {
+                var newString: string = "";
+                for (var i = 0; i < args.length; i++){
+                    newString =newString + args[i] + " ";
+                }
+                document.getElementById("status").innerHTML = newString;
+            } else {
+                _StdOut.putText("Usage: status <string>. Please supply a string.");
+            }
+           
         }
 
     }

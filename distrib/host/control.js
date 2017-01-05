@@ -60,7 +60,10 @@ var TSOS;
             // Update the log console.
             var taLog = document.getElementById("taHostLog");
             taLog.value = str + taLog.value;
+            // Update the current data and time
             // TODO in the future: Optionally update a log database or some streaming service.
+            // Update status bar
+            document.getElementById('clock').innerHTML = "" + Date();
         };
         //
         // Host Events

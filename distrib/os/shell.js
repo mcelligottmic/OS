@@ -55,6 +55,8 @@ var TSOS;
             // whereami
             sc = new TSOS.ShellCommand(this.shellWhereAmI, "whereami", "- Displays your current location");
             this.commandList[this.commandList.length] = sc;
+            sc = new TSOS.ShellCommand(this.shellStatus, "status", "<string> - Displays <string> as your status.");
+            this.commandList[this.commandList.length] = sc;
             // ps  - list the running processes and their IDs
             // kill <id> - kills the specified process id.
             //
@@ -263,6 +265,19 @@ var TSOS;
         Shell.prototype.shellWhereAmI = function (args) {
             //tells you where you are...like you didn't know
             _StdOut.putText("You're at a computer...");
+        };
+        Shell.prototype.shellStatus = function (args) {
+            //changes your status
+            if (args.length > 0) {
+                var newString = "";
+                for (var i = 0; i < args.length; i++) {
+                    newString = newString + args[i] + " ";
+                }
+                document.getElementById("status").innerHTML = newString;
+            }
+            else {
+                _StdOut.putText("Usage: status <string>. Please supply a string.");
+            }
         };
         return Shell;
     }());

@@ -307,7 +307,7 @@ module TSOS {
         public shellDate(args) {
             //ex. printout Mon Dec 12 2016 00:52:31 GMT-0500 (Eastern Standard Time)
             _StdOut.putText(Date());
-            /*ex. printout Today's date is 12/12/2016 and the time is 0:52
+            /*ex. printout Today's date is 12/12/2016 and the time is 0:52, need to add leading zeros
             var d = new Date();
             _StdOut.putText("Today's date is " + (d.getMonth() + 1)+ "/" + d.getDate() + "/" + d.getFullYear() + " and the time is " + d.getHours() + ":" + d.getMinutes() );
             */
